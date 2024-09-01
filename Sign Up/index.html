@@ -5,31 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <title> Sign Up </title>
+    <title>Sign Up</title>
 </head>
 <body>
     <div class="box">
         <span class="borderLine"></span>
-        <form>
+        <form onsubmit="return registerUser()">
             <h2>Sign Up</h2>
             <div class="inputBox">
-                <input type="text" required="required">
+                <input type="text" id="fullName" required="required">
                 <span>Full Name</span>
                 <i></i>
             </div>
             <div class="inputBox">
-                <input type="text" required="required">
+                <input type="text" id="username" required="required">
                 <span>Username</span>
                 <i></i>
             </div>
             <div class="inputBox">
-                <input type="password" required="required">
+                <input type="password" id="password" required="required">
                 <span>Password</span>
                 <i></i>
             </div>
             <div class="inputBox">
-                <input type="password" required="required">
-                <span>Confarm Password</span>
+                <input type="password" id="confirmPassword" required="required">
+                <span>Confirm Password</span>
                 <i></i>
             </div>
             <div class="links">
@@ -38,5 +38,25 @@
             <input type="submit" value="Sign Up">
         </form>
     </div>
+
+    <script>
+        function registerUser() {
+            var username = document.getElementById('username').value.trim();
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false; // Prevent form submission
+            }
+            
+            // Store user data in localStorage
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+
+            alert("User registered successfully.");
+            return false; // Prevent form submission
+        }
+    </script>
 </body>
 </html>
