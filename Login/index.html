@@ -6,8 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <title>Login</title>
+    <style>
+        /* Basic styling for the message box */
+        #messageBox {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 10px; /* Adjust this value as needed */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
+    <!-- Message Box -->
+    <div id="messageBox"></div>
+
     <div class="box">
         <span class="borderLine"></span>
         <form onsubmit="return validateLogin()">
@@ -28,28 +48,39 @@
             </div>
             <input type="submit" value="Login">
         </form>
-        <p id="message" style="color:red; text-align:center; margin-top:10px;"></p>
-        <a id="fileLink" style="display:none;" href="file:///C:/Users/Saad/Desktop/Your%20Health" download="Your Health">Download File</a>
     </div>
 
     <script>
         function validateLogin() {
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
+            var username = document.getElementById('username').value.trim();
+            var password = document.getElementById('password').value.trim();
+            var messageBox = document.getElementById('messageBox');
 
-            if(username === "saad" && password === "123") {
-                document.getElementById('message').innerText = "Login successful!";
-                document.getElementById('message').style.color = "green";
-                
-                
-                var fileLink = document.getElementById('fileLink');
-                fileLink.style.display = "block";
-                fileLink.click(); 
+            // Clear any previous messages
+            messageBox.style.display = 'none';
+            messageBox.innerText = '';
 
-                return false; 
+            // Get stored user credentials
+            var storedUsername = localStorage.getItem('username');
+            var storedPassword = localStorage.getItem('password');
+
+            // Check if stored credentials exist
+            if (!storedUsername || !storedPassword) {
+                messageBox.innerText = "لم يتم العثور على حساب. الرجاء التسجيل أولاً.";
+                messageBox.style.display = 'block';
+                return false;
+            }
+
+            // Check user credentials
+            if (username === storedUsername && password === storedPassword) {
+                // Redirect user to the required link after successful login
+                window.location.href = "https://saad1278.github.io/yourhelthy/afterlogin/index.html";
+                return false; // Prevent form submission
             } else {
-                document.getElementById('message').innerText = "Incorrect username or password.";
-                return false; 
+                // Display error message
+                messageBox.innerText = "كلمة المرور أو اسم الحساب خاطئ. The password or username is incorrect.";
+                messageBox.style.display = 'block';
+                return false; // Prevent form submission
             }
         }
     </script>
