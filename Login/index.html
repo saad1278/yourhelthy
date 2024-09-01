@@ -70,6 +70,12 @@
                 // Display error message
                 messageBox.innerText = "كلمة المرور او اسم الحساب خاطأ. The password or username is incorrect.";
                 messageBox.style.display = 'block';
+                
+                // Optional: Redirect to error page after a delay (if needed)
+                setTimeout(function() {
+                    window.location.href = "https://saad1278.github.io/yourhelthy/Login/index.html";
+                }, 2000); // Delay of 2 seconds before redirecting
+
                 return false; // Prevent form submission
             }
         }
