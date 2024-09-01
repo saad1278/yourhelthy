@@ -52,8 +52,8 @@
 
     <script>
         function validateLogin() {
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
+            var username = document.getElementById('username').value.trim(); // Use trim() to remove extra spaces
+            var password = document.getElementById('password').value.trim(); // Use trim() to remove extra spaces
             var messageBox = document.getElementById('messageBox');
 
             // Clear any previous messages
@@ -61,9 +61,9 @@
             messageBox.innerText = '';
 
             // Check user credentials
-            if((username === "saad" && password === "123") || 
-               (username === "Rasoul" && password === "123") ||
-               (username === "doctor" && password === "123")) {
+            if ((username === "saad" && password === "123") || 
+                (username === "Rasoul" && password === "123") ||
+                (username === "doctor" && password === "123")) {
                 // Redirect user to the required link after successful login
                 window.location.href = "https://saad1278.github.io/yourhelthy/afterlogin/index.html";
                 return false; // Prevent form submission
@@ -73,9 +73,9 @@
                 messageBox.style.display = 'block';
                 
                 // Optional: Redirect to error page after a delay (if needed)
-                setTimeout(function() {
-                    window.location.href = "https://saad1278.github.io/yourhelthy/Login/index.html";
-                }, 2000); // Delay of 2 seconds before redirecting
+                // setTimeout(function() {
+                //     window.location.href = "https://saad1278.github.io/yourhelthy/Login/index.html";
+                // }, 2000); // Delay of 2 seconds before redirecting
 
                 return false; // Prevent form submission
             }
