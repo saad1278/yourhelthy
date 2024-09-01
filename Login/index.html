@@ -35,17 +35,21 @@
         function validateLogin() {
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
+            var messageElement = document.getElementById('message');
 
-            // التحقق من صحة المستخدمين
+            // Clear any previous messages
+            messageElement.innerText = '';
+
+            // Check user credentials
             if((username === "saad" && password === "123") || 
                (username === "Rasoul" && password === "123")) {
-                // توجيه المستخدم إلى الرابط المطلوب بعد تسجيل الدخول بنجاح
+                // Redirect user to the required link after successful login
                 window.location.href = "https://saad1278.github.io/yourhelthy/afterlogin/index.html";
-                return false; // منع إرسال النموذج
+                return false; // Prevent form submission
             } else {
-                // إظهار رسالة خطأ
-                document.getElementById('message').innerText = "كلمة المرور او اسم الحساب خاطأ. The password or username is incorrect.";
-                return false; // منع إرسال النموذج
+                // Display error message
+                messageElement.innerText = "كلمة المرور او اسم الحساب خاطأ. The password or username is incorrect.";
+                return false; // Prevent form submission
             }
         }
     </script>
