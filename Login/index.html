@@ -29,7 +29,6 @@
             <input type="submit" value="Login">
         </form>
         <p id="message" style="color:red; text-align:center; margin-top:10px;"></p>
-        <a id="fileLink" style="display:none;" href="https://saad1278.github.io/yourhelthy/afterlogin/index.html" download="Your Health">Download File</a>
     </div>
 
     <script>
@@ -38,20 +37,15 @@
             var password = document.getElementById('password').value;
 
             if(username === "saad" && password === "123") {
-                document.getElementById('message').innerText = "Login successful!";
-                document.getElementById('message').style.color = "green";
-                
-                
-                var fileLink = document.getElementById('fileLink');
-                fileLink.style.display = "block";
-                fileLink.click(); 
-
-                return false; 
+                // توجيه المستخدم إلى الرابط المطلوب بعد تسجيل الدخول بنجاح
+                window.location.href = "https://saad1278.github.io/yourhelthy/afterlogin/index.html";
+                return false; // منع إرسال النموذج
             } else {
                 document.getElementById('message').innerText = "Incorrect username or password.";
-                return false; 
+                return false; // منع إرسال النموذج
             }
         }
     </script>
 </body>
 </html>
+
