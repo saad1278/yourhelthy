@@ -52,33 +52,37 @@
 
     <script>
 function validateLogin() {
-            var username = document.getElementById('username').value.trim();
-            var password = document.getElementById('password').value.trim();
-            var messageBox = document.getElementById('messageBox');
+    var username = document.getElementById('username').value.trim();
+    var password = document.getElementById('password').value.trim();
+    var messageBox = document.getElementById('messageBox');
 
-            // Clear any previous messages
-            messageBox.style.display = 'none';
-            messageBox.innerText = '';
+    // Clear any previous messages
+    messageBox.style.display = 'none';
+    messageBox.innerText = '';
 
-            // Get stored user credentials
-            var storedUsername = localStorage.getItem('username');
-            var storedPassword = localStorage.getItem('password');
+    // Get stored user credentials
+    var storedUsername = localStorage.getItem('username');
+    var storedPassword = localStorage.getItem('password');
 
-            // Check user credentials
-            if (username === storedUsername && password === storedPassword) {
-                // Redirect user to the required link after successful login
-                window.location.href = "https://saad1278.github.io/yourhelthy/afterlogin/index.html";
-                return false; // Prevent form submission
-            } else {
-                // Display error message
-                messageBox.innerText = "كلمة المرور او اسم الحساب خاطأ. The password or username is incorrect.";
-                messageBox.style.display = 'block';
-                return false; // Prevent form submission
-            }
-        }
+    // Check if stored credentials exist
+    if (!storedUsername || !storedPassword) {
+        messageBox.innerText = "لم يتم العثور على حساب. الرجاء التسجيل أولاً.";
+        messageBox.style.display = 'block';
+        return false;
+    }
 
-            
-        
+    // Check user credentials
+    if (username === storedUsername && password === storedPassword) {
+        // Redirect user to the required link after successful login
+        window.location.href = "https://saad1278.github.io/yourhelthy/afterlogin/index.html";
+        return false; // Prevent form submission
+    } else {
+        // Display error message
+        messageBox.innerText = "كلمة المرور أو اسم الحساب خاطئ. The password or username is incorrect.";
+        messageBox.style.display = 'block';
+        return false; // Prevent form submission
+    }
+}
     </script>
 </body>
 </html>
