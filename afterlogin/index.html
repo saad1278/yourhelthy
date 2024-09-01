@@ -39,7 +39,7 @@
     <main class="container">
         <section class="dashboard">
             <div class="welcome-box">
-                <h2>مرحباً، محمد علي</h2>
+                <h2>مرحباً، <span id="username-display">محمد علي</span></h2>
                 <p style="color: black;">نأمل أن تكون بخير اليوم. اطلع على معلوماتك أدناه أو حدد موعدًا جديدًا.</p>
             </div>
             
@@ -110,334 +110,343 @@
           <a href="#"><i class="icon fa-solid fa-phone"></i></a>
         </div>
       </footer>
+
     <script>
-        // JavaScript المعدل
-document.getElementById('edit-button').addEventListener('click', function() {
-    document.getElementById('edit-info').classList.remove('hidden');
-});
+        document.addEventListener('DOMContentLoaded', function() {
+            var username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('username-display').textContent = username;
+                document.getElementById('display-name').textContent = username;
+                document.querySelector('.welcome-box h2').textContent = `مرحباً، ${username}`;
+            }
+        });
 
-document.getElementById('edit-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // يمنع إعادة تحميل الصفحة
+        document.getElementById('edit-button').addEventListener('click', function() {
+            document.getElementById('edit-info').classList.remove('hidden');
+        });
 
-    // احصل على القيم الجديدة من النموذج
-    const name = document.getElementById('name').value;
-    const age = document.getElementById('age').value;
-    const lastVisit = document.getElementById('last-visit').value;
-    const healthStatus = document.getElementById('health-status').value;
+        document.getElementById('edit-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // يمنع إعادة تحميل الصفحة
 
-    // قم بتحديث العرض في الصفحة
-    document.getElementById('display-name').textContent = name;
-    document.getElementById('display-age').textContent = age + ' سنة';
-    document.getElementById('display-last-visit').textContent = lastVisit;
-    document.getElementById('display-health-status').textContent = healthStatus;
+            // احصل على القيم الجديدة من النموذج
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const lastVisit = document.getElementById('last-visit').value;
+            const healthStatus = document.getElementById('health-status').value;
 
-    // تحديث الاسم في العنوان
-    document.querySelector('.welcome-box h2').textContent = `مرحباً، ${name}`;
+            // قم بتحديث العرض في الصفحة
+            document.getElementById('display-name').textContent = name;
+            document.getElementById('display-age').textContent = age + ' سنة';
+            document.getElementById('display-last-visit').textContent = lastVisit;
+            document.getElementById('display-health-status').textContent = healthStatus;
 
-    // أخفِ النموذج
-    document.getElementById('edit-info').classList.add('hidden');
-});
+            // تحديث الاسم في العنوان
+            document.querySelector('.welcome-box h2').textContent = `مرحباً، ${name}`;
+
+            // أخفِ النموذج
+            document.getElementById('edit-info').classList.add('hidden');
+        });
     </script>
 
     <style>
         :root {
-    --background: #1e2028;
-    --white: #fff;
-    --gray: #c4c4c4;
-    --light-purple: #564ccf;
-    --dark-purple: #4c3fe2;
-}
+            --background: #1e2028;
+            --white: #fff;
+            --gray: #c4c4c4;
+            --light-purple: #564ccf;
+            --dark-purple: #4c3fe2;
+        }
 
-/* CSS المعدل */
-body {
-    font-family: 'Cairo', sans-serif;
-    background-color: var(--background);
-    margin: 0;
-    padding: 0;
-    direction: rtl;
-    color: #333;
-}
+        /* CSS المعدل */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--background);
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            color: #333;
+        }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-header {
-    background: var(--dark-purple);
-    color: white;
-    padding: 20px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-}
+        header {
+            background: var(--dark-purple);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        }
 
-header h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-}
+        header h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-    margin-top: 15px;
-}
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            margin-top: 15px;
+        }
 
-nav ul li {
-    display: inline-block;
-    margin: 0 15px;
-}
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.2rem;
-    transition: color 0.3s;
-}
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
 
-nav ul li a:hover {
-    color: #333;
-}
+        nav ul li a:hover {
+            color: #333;
+        }
 
-main {
-    padding: 50px 0;
-}
+        main {
+            padding: 50px 0;
+        }
 
-.dashboard {
-    background-color: var(--white);
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
+        .dashboard {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
 
-.dashboard:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://www.example.com/clinic-bg.jpg') no-repeat center center/cover;
-    opacity: 0.1;
-    z-index: -1;
-}
+        .dashboard:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.example.com/clinic-bg.jpg') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
 
-.welcome-box {
-    background-color: var(--white);
-    padding: 25px;
-    border-radius: 10px;
-    margin-bottom: 35px;
-    text-align: center;
-}
+        .welcome-box {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 35px;
+            text-align: center;
+        }
 
-.welcome-box h2 {
-    margin-top: 0;
-    color: var(--dark-purple);
-    font-size: 2rem;
-}
+        .welcome-box h2 {
+            margin-top: 0;
+            color: var(--dark-purple);
+            font-size: 2rem;
+        }
 
-.info-box h3, .appointments h3 {
-    color: var(--dark-purple);
-    margin-bottom: 25px;
-    font-size: 1.8rem;
-}
+        .info-box h3, .appointments h3 {
+            color: var(--dark-purple);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
 
-.info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
 
-.info-grid div {
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-}
+        .info-grid div {
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
 
-.appointments ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 25px 0;
-}
+        .appointments ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+        }
 
-.appointments ul li {
-    display: flex;
-    justify-content: space-between;
-    background-color: #f9f9f9;
-    padding: 18px;
-    margin-bottom: 12px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    transition: background-color 0.3s;
-    font-size: 1rem;
-}
+        .appointments ul li {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+            padding: 18px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
 
-.appointments ul li:hover {
-    background-color: #e8f5e9;
-}
+        .appointments ul li:hover {
+            background-color: #e8f5e9;
+        }
 
-.appointments .date {
-    font-weight: bold;
-}
+        .appointments .date {
+            font-weight: bold;
+        }
 
-.btn-primary {
-    display: block;
-    width: 100%;
-    text-align: center;
-    background-color: var(--dark-purple);
-    color: white;
-    padding: 14px;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 20px;
-}
+        .btn-primary {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--dark-purple);
+            color: white;
+            padding: 14px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
 
-.btn-primary:hover {
-    background-color: var(--light-purple);
-}
+        .btn-primary:hover {
+            background-color: var(--light-purple);
+        }
 
-.cards-section {
-    margin-top: 50px;
-}
+        .cards-section {
+            margin-top: 50px;
+        }
 
-.cards-section h3 {
-    color: var(--dark-purple);
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 40px;
-}
+        .cards-section h3 {
+            color: var(--dark-purple);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-.cards {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-}
+        .cards {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
 
-.card {
-    background-color: #222222;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    flex: 1;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
+        .card {
+            background-color: #222222;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex: 1;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-.card h4 {
-    color: var(--dark-purple);
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-}
+        .card h4 {
+            color: var(--dark-purple);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
 
-.card p {
-    color: var(--white);
-    font-size: 1rem;
-    margin-bottom: 20px;
-}
+        .card p {
+            color: var(--white);
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
 
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-}
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+        }
 
-.btn-secondary {
-    background-color: var(--dark-purple);
-    color: white;
-    padding: 12px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
+        .btn-secondary {
+            background-color: var(--dark-purple);
+            color: white;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
 
-.btn-secondary:hover {
-    background-color: var(--light-purple);
-    transform: translateY(-5px);
-}
+        .btn-secondary:hover {
+            background-color: var(--light-purple);
+            transform: translateY(-5px);
+        }
 
-footer {
-    background-color: #252731;
-    min-height: 25vh;
-    padding: 2rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-  
-footer h3 {
-    color: var(--white);
-    font-size: 2rem;
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid var(--gray);
-    width: 100%;
-    text-align: center;
-}
-  
-footer p {
-    font-size: 1.5rem;
-  
-    color: var(--white);
-    margin-bottom: 1rem;
-}
-  
-footer .icon {
-    color: var(--gray);
-    margin: 1rem;
-    font-size: 1.5rem;
-}
-  
-footer .icon:hover {
-    color: var(--dark-purple);
-}
+        footer {
+            background-color: #252731;
+            min-height: 25vh;
+            padding: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+          
+        footer h3 {
+            color: var(--white);
+            font-size: 2rem;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--gray);
+            width: 100%;
+            text-align: center;
+        }
+          
+        footer p {
+            font-size: 1.5rem;
+          
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+          
+        footer .icon {
+            color: var(--gray);
+            margin: 1rem;
+            font-size: 1.5rem;
+        }
+          
+        footer .icon:hover {
+            color: var(--dark-purple);
+        }
 
-/* تخصيص لحقول التعديل */
-.edit-info {
-    margin-top: 20px;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+        /* تخصيص لحقول التعديل */
+        .edit-info {
+            margin-top: 20px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-.edit-info .form-group {
-    margin-bottom: 20px;
-}
+        .edit-info .form-group {
+            margin-bottom: 20px;
+        }
 
-.edit-info .form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
+        .edit-info .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-.edit-info .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 1rem;
-}
+        .edit-info .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
 
-.hidden {
-    display: none;
-}
+        .hidden {
+            display: none;
+        }
 
-/* مسافة بين زر تعديل المعلومات والحقول */
-.info-box {
-    margin-bottom: 30px; /* زيادة المسافة بين زر التعديل والحقول الموجودة فوقه */
-}
+        /* مسافة بين زر تعديل المعلومات والحقول */
+        .info-box {
+            margin-bottom: 30px; /* زيادة المسافة بين زر التعديل والحقول الموجودة فوقه */
+        }
     </style>
 </body>
 </html>
