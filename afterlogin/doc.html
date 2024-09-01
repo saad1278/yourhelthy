@@ -35,42 +35,43 @@
         }
 
         nav {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          height: 10vh;
-        }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  padding: 0 2rem;
+}
 
-        nav #mobile-toggle {
-          display: none;
-          color: var(--white);
-          font-size: 2rem;
-          cursor: pointer;
-        }
+nav .logo {
+  font-size: 3rem;
+  color: var(--light-purple);
+}
 
-        nav .logo {
-          font-size: 3rem;
-          color: var(--light-purple);
-        }
+nav .nav-items {
+  list-style-type: none;
+  display: flex;
+}
 
-        nav .nav-items {
-          list-style-type: none;
-          display: flex;
-        }
+nav .nav-items .nav-item {
+  padding-left: 2rem;
+}
 
-        nav .nav-items .nav-item {
-          padding-left: 2rem;
-        }
+.nav-item .nav-link {
+  color: var(--gray);
+  text-decoration: none;
+}
 
-        .nav-item .nav-link {
-          color: var(--gray);
-          text-decoration: none;
-        }
+.nav-item .nav-link:hover {
+  color: #faf5f5;
+  text-decoration: none;
+}
 
-        .nav-item .nav-link:hover {
-          color: #faf5f5;
-          text-decoration: none;
-        }
+#mobile-toggle {
+  display: none;
+  color: var(--white);
+  font-size: 2rem;
+  cursor: pointer;
+}
 
         .cta {
           text-decoration: none;
