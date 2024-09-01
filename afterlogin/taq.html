@@ -349,6 +349,8 @@ footer .icon:hover {
       </footer>
 
     <script>
+        mobileToggle.addEventListener('click', () => {
+            navItems.classList.toggle('active');
         function toggleForm() {
     const form = document.getElementById('report-form');
     form.classList.toggle('hidden');
