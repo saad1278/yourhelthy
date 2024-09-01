@@ -11,9 +11,9 @@
         #messageBox {
             display: none; /* Hidden by default */
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 10px; /* Adjust this value as needed */
+            left: 50%;
+            transform: translateX(-50%);
             background-color: #f8d7da;
             color: #721c24;
             padding: 15px;
@@ -58,6 +58,7 @@
 
             // Clear any previous messages
             messageBox.style.display = 'none';
+            messageBox.innerText = '';
 
             // Check user credentials
             if((username === "saad" && password === "123") || 
@@ -67,7 +68,7 @@
                 return false; // Prevent form submission
             } else {
                 // Display error message
-                consel.log("كلمة المرور او اسم الحساب خاطأ. The password or username is incorrect.");
+                messageBox.innerText = "كلمة المرور او اسم الحساب خاطأ. The password or username is incorrect.";
                 messageBox.style.display = 'block';
                 return false; // Prevent form submission
             }
