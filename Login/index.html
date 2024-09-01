@@ -37,15 +37,14 @@
             var password = document.getElementById('password').value;
 
             if(username === "saad" && password === "123") {
-                // توجيه المستخدم إلى الرابط المطلوب بعد تسجيل الدخول بنجاح
+                
                 window.location.href = "https://saad1278.github.io/yourhelthy/afterlogin/index.html";
-                return false; // منع إرسال النموذج
+                return false; 
             } else {
                 document.getElementById('message').innerText = "Incorrect username or password.";
-                return false; // منع إرسال النموذج
+                return false; 
             }
         }
     </script>
 </body>
 </html>
-
