@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="box">
+        <span class="borderLine"></span>
+        <form onsubmit="return validateLogin()">
+            <h2>Login</h2>
+            <div class="inputBox">
+                <input type="text" id="username" required="required">
+                <span>Username</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="password" id="password" required="required">
+                <span>Password</span>
+                <i></i>
+            </div>
+            <div class="links">
+                <a href="../Forgot/index.html">Forgot Password!</a>
+                <a href="../Sign Up/index.html">Signup?</a>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+        <p id="message" style="color:red; text-align:center; margin-top:10px;"></p>
+        <a id="fileLink" style="display:none;" href="file:///C:/Users/Saad/Desktop/Your%20Health" download="Your Health">Download File</a>
+    </div>
+
+    <script>
+        function validateLogin() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if(username === "saad" && password === "123") {
+                document.getElementById('message').innerText = "Login successful!";
+                document.getElementById('message').style.color = "green";
+                
+                
+                var fileLink = document.getElementById('fileLink');
+                fileLink.style.display = "block";
+                fileLink.click(); 
+
+                return false; 
+            } else {
+                document.getElementById('message').innerText = "Incorrect username or password.";
+                return false; 
+            }
+        }
+    </script>
+</body>
+</html>
