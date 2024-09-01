@@ -52,18 +52,20 @@
 
     <script>
         function validateLogin() {
-            var username = document.getElementById('username').value.trim(); // Use trim() to remove extra spaces
-            var password = document.getElementById('password').value.trim(); // Use trim() to remove extra spaces
+            var username = document.getElementById('username').value.trim();
+            var password = document.getElementById('password').value.trim();
             var messageBox = document.getElementById('messageBox');
 
             // Clear any previous messages
             messageBox.style.display = 'none';
             messageBox.innerText = '';
 
+            // Get stored user credentials
+            var storedUsername = localStorage.getItem('username');
+            var storedPassword = localStorage.getItem('password');
+
             // Check user credentials
-            if ((username === "saad" && password === "123") || 
-                (username === "Rasoul" && password === "123") ||
-                (username === "doctor" && password === "123")) {
+            if (username === storedUsername && password === storedPassword) {
                 // Redirect user to the required link after successful login
                 window.location.href = "https://saad1278.github.io/yourhelthy/afterlogin/index.html";
                 return false; // Prevent form submission
@@ -71,12 +73,6 @@
                 // Display error message
                 messageBox.innerText = "كلمة المرور او اسم الحساب خاطأ. The password or username is incorrect.";
                 messageBox.style.display = 'block';
-                
-                // Optional: Redirect to error page after a delay (if needed)
-                // setTimeout(function() {
-                //     window.location.href = "https://saad1278.github.io/yourhelthy/Login/index.html";
-                // }, 2000); // Delay of 2 seconds before redirecting
-
                 return false; // Prevent form submission
             }
         }
