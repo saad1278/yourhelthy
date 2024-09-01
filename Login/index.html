@@ -43,7 +43,8 @@
                 window.location.href = "https://saad1278.github.io/yourhelthy/afterlogin/index.html";
                 return false; // منع إرسال النموذج
             } else {
-                document.getElementById('message').innerText = "Incorrect username or password.";
+                // إظهار رسالة خطأ
+                document.getElementById('message').innerText = "كلمة المرور او اسم الحساب خاطأ. The password or username is incorrect.";
                 return false; // منع إرسال النموذج
             }
         }
