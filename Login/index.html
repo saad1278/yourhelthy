@@ -6,8 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <title>Login</title>
+    <style>
+        /* Basic styling for the message box */
+        #messageBox {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
+    <!-- Message Box -->
+    <div id="messageBox"></div>
+
     <div class="box">
         <span class="borderLine"></span>
         <form onsubmit="return validateLogin()">
@@ -28,17 +48,16 @@
             </div>
             <input type="submit" value="Login">
         </form>
-        <p id="message" style="color:red; text-align:center; margin-top:10px;"></p>
     </div>
 
     <script>
         function validateLogin() {
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
-            var messageElement = document.getElementById('message');
+            var messageBox = document.getElementById('messageBox');
 
             // Clear any previous messages
-            messageElement.innerText = '';
+            messageBox.style.display = 'none';
 
             // Check user credentials
             if((username === "saad" && password === "123") || 
@@ -48,7 +67,8 @@
                 return false; // Prevent form submission
             } else {
                 // Display error message
-                consel.log("كلمة المرور او اسم الحساب خاطأ. The password or username is incorrect.");
+                messageBox.innerText = "كلمة المرور او اسم الحساب خاطأ. The password or username is incorrect.";
+                messageBox.style.display = 'block';
                 return false; // Prevent form submission
             }
         }
