@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الوصفات الطبية</title>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap");
+               @import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap");
 
         :root {
           --white: #fff;
@@ -36,7 +36,8 @@
 
        nav {
           display: flex;
-          justify-content: space-around;
+          flex-direction: row-reverse; /* تغيير الاتجاه هنا */
+          justify-content: space-between; /* محاذاة العناصر على أطراف مختلفة */
           align-items: center;
           height: 10vh;
         }
@@ -59,7 +60,7 @@
         }
 
         nav .nav-items .nav-item {
-          padding-right: 2rem;
+          padding-left: 2rem; /* تغيير padding-right إلى padding-left */
         }
 
         .nav-item .nav-link {
