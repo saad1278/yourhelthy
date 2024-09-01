@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    
+    <title>التقارير الطبية</title>
+    <style>
+        :root {
+    --background: #1e2028;
+    --white: #fff;
+    --gray: #c4c4c4;
+    --light-purple: #564ccf;
+    --dark-purple: #4c3fe2;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--background);
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    color: var(--dark-purple);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    background-color: var(--dark-purple);
+    color: white;
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 4px solid black;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #817e7e;
+}
+
+.recipes-section {
+    margin-top: 20px;
+}
+
+.recipes-section h2 {
+    font-size: 2rem;
+    color: #00796b;
+    border-bottom: 2px solid #004d40;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: var(--dark-purple);
+    color: white;
+    padding: 14px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-bottom: 20px;
+}
+
+.btn-primary:hover {
+    background-color: var(--light-purple);
+    transform: translateY(-2px);
+}
+
+.recipe-form {
+    margin-top: 20px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+.recipe-form h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: black;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 8px;
+    display: block;
+}
+
+input[type="text"],
+textarea,
+input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+input[type="date"]:focus {
+    border-color: #00796b;
+    outline: none;
+}
+
+.recipes-list {
+    margin-top: 20px;
+}
+
+.recipe-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.recipe-card:hover {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.recipe-card h4 {
+    font-size: 1.4rem;
+    margin-top: 0;
+    color: black;
+}
+
+.recipe-card p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.recipe-card .btn-delete {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #e53935;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.recipe-card .btn-delete:hover {
+    background-color: #b71c1c;
+    transform: translateY(-2px);
+}
+
+footer {
+    background-color: #252731;
+    min-height: 25vh;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+footer h3 {
+    color: var(--white);
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--gray);
+    width: 100%;
+    text-align: center;
+}
+  
+footer p {
+    font-size: 1.5rem;
+  
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+  
+footer .icon {
+    color: var(--gray);
+    margin: 1rem;
+    font-size: 1.5rem;
+}
+  
+footer .icon:hover {
+    color: var(--dark-purple);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>صحتك</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">لوحة التحكم</a></li>
+                    <li><a href="#">التقارير الطبية</a></li>
+                    <li><a href="#">الوصفات الطبية</a></li>
+                    <li><a href="#">الدعم الفني</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <button class="btn-primary" onclick="toggleForm()">إضافة تقرير طبي</button>
+
+        <div id="report-form" class="recipe-form hidden">
+            <h3>إضافة تقرير طبي</h3>
+            <form id="report-form-content">
+                <div class="form-group">
+                    <label for="patientName">اسم المريض</label>
+                    <input type="text" id="patientName" name="patientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="reportDate">تاريخ التقرير</label>
+                    <input type="date" id="reportDate" name="reportDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="diagnosis">التشخيص</label>
+                    <textarea id="diagnosis" name="diagnosis" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="treatment">الخطة العلاجية</label>
+                    <textarea id="treatment" name="treatment" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">حفظ التقرير</button>
+            </form>
+        </div>
+
+        <div id="reports-list" class="recipes-list">
+            <!-- التقارير الطبية ستضاف هنا -->
+        </div>
+    </div>
+
+    <footer id="contact">
+        <h3>صحتك</h3>
+        <p>تواصل معنا الآن</p>
+        <div class="icons">
+          <a href="#"><i class="icon fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="icon fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="icon fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="icon fa-solid fa-phone"></i></a>
+        </div>
+      </footer>
+
+    <script>
+        function toggleForm() {
+    const form = document.getElementById('report-form');
+    form.classList.toggle('hidden');
+}
+
+document.getElementById('report-form-content').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const patientName = document.getElementById('patientName').value;
+    const reportDate = document.getElementById('reportDate').value;
+    const diagnosis = document.getElementById('diagnosis').value;
+    const treatment = document.getElementById('treatment').value;
+
+    // إنشاء بطاقة التقرير
+    const reportCard = document.createElement('div');
+    reportCard.className = 'recipe-card';
+    reportCard.innerHTML = `
+        <button class="btn-delete" onclick="deleteReport(this)">×</button>
+        <h4>${patientName}</h4>
+        <p><strong>تاريخ التقرير:</strong> ${reportDate}</p>
+        <p><strong>التشخيص:</strong> ${diagnosis}</p>
+        <p><strong>الخطة العلاجية:</strong> ${treatment}</p>
+    `;
+
+    // أضف بطاقة التقرير إلى القائمة
+    document.getElementById('reports-list').appendChild(reportCard);
+
+    // إخفاء نموذج التقرير
+    document.getElementById('report-form').classList.add('hidden');
+
+    // مسح حقول النموذج
+    document.getElementById('report-form-content').reset();
+});
+
+function deleteReport(button) {
+    const reportCard = button.parentElement;
+    reportCard.remove();
+}
+    </script>
+</body>
+</html>
