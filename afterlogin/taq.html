@@ -32,6 +32,8 @@
             background-color: #1e2028;
             font-family: "Tajawal", sans-serif;
             color: var(--white);
+            direction: rtl;
+            text-align: right;
         }
 
         .container {
@@ -162,110 +164,95 @@
             margin-top: 20px;
         }
 
-        .recipe-card {
+                .recipe-card {
             background-color: #252731;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .recipe-card:hover {
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
+            margin-bottom: 20px;
         }
 
         .recipe-card h4 {
-            font-size: 1.4rem;
-            margin-top: 0;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
             color: var(--light-purple);
         }
 
         .recipe-card p {
-            font-size: 1rem;
-            margin: 5px 0;
-        }
-
-        .recipe-card .btn-delete {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: #e53935;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .recipe-card .btn-delete:hover {
-            background-color: #b71c1c;
-            transform: translateY(-2px);
-        }
-
-        footer {
-            background-color: #252731;
-            min-height: 25vh;
-            padding: 2rem 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-          
-        footer h3 {
-            color: var(--white);
-            font-size: 2rem;
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid var(--gray);
-            width: 100%;
-            text-align: center;
-        }
-          
-        footer p {
-            font-size: 1.5rem;
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-          
-        footer .icon {
+            font-size: 1.1rem;
             color: var(--gray);
-            margin: 1rem;
-            font-size: 1.5rem;
-        }
-          
-        footer .icon:hover {
-            color: var(--dark-purple);
         }
 
-        @media screen and (max-width: 600px) {
-            nav #mobile-menu {
-                display: block;
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
             }
 
             nav .nav-items {
                 display: none;
                 flex-direction: column;
+                background-color: #1e2028;
                 position: absolute;
-                align-items: center;
-                justify-content: center;
+                top: 70px;
                 right: 0;
-                top: 12vh;
                 width: 100%;
-                height: 50%;
-                background-color: var(--dark-purple);
+                padding: 20px;
+            }
+
+            nav #mobile-menu {
+                display: block;
             }
 
             nav .nav-items.active {
                 display: flex;
             }
 
-            nav .nav-items .nav-item {
-                padding: 2rem 0;
+            nav .nav-item {
+                margin-bottom: 10px;
+            }
+
+            .btn-primary {
+                font-size: 1rem;
+                padding: 12px 18px;
+            }
+
+            .recipe-card {
+                padding: 15px;
+            }
+
+            .recipe-card h4 {
+                font-size: 1.3rem;
+            }
+
+            .recipe-card p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav .nav-item .nav-link {
+                font-size: 1rem;
+            }
+
+            .btn-primary {
+                font-size: 0.9rem;
+                padding: 10px 16px;
+            }
+
+            .recipe-form h3 {
                 font-size: 1.4rem;
-                text-align: center;
+            }
+
+            .recipe-card h4 {
+                font-size: 1.2rem;
+            }
+
+            .recipe-card p {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -273,84 +260,58 @@
 <body>
     <header>
         <div class="container">
-            <h1>صحتك</h1>
-            <span id="mobile-menu"><i class="fa-solid fa-bars"></i></span>
+            <h1>التقارير الطبية</h1>
             <nav>
+                <div id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
                 <ul class="nav-items">
-                    <li class="nav-item"><a href="#" class="nav-link">لوحة التحكم</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">التقارير الطبية</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">الوصفات الطبية</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">الدعم الفني</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">الرئيسية</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">التقارير</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">عن الموقع</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">تواصل معنا</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
     <div class="container">
-        <button class="btn-primary" onclick="toggleForm()">إضافة تقرير طبي</button>
+        <button class="btn-primary">إضافة تقرير جديد</button>
 
-        <div id="report-form" class="recipe-form hidden">
-            <h3>إضافة تقرير طبي</h3>
-            <form id="report-form-content">
-                <div class="form-group">
-                    <label for="patientName">اسم المريض</label>
-                    <input type="text" id="patientName" name="patientName" required>
-                </div>
-                <div class="form-group">
-                    <label for="reportTitle">عنوان التقرير</label>
-                    <input type="text" id="reportTitle" name="reportTitle" required>
-                </div>
-                <div class="form-group">
-                    <label for="reportDate">تاريخ التقرير</label>
-                    <input type="date" id="reportDate" name="reportDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="reportContent">محتوى التقرير</label>
-                    <textarea id="reportContent" name="reportContent" rows="4" required></textarea>
-                </div>
-                <button class="btn-primary" type="submit">حفظ التقرير</button>
-            </form>
+        <div class="recipe-form">
+            <h3>إضافة تقرير</h3>
+            <div class="form-group">
+                <label for="report-title">عنوان التقرير</label>
+                <input type="text" id="report-title" placeholder="أدخل عنوان التقرير">
+            </div>
+            <div class="form-group">
+                <label for="report-date">التاريخ</label>
+                <input type="date" id="report-date">
+            </div>
+            <div class="form-group">
+                <label for="report-description">الوصف</label>
+                <textarea id="report-description" rows="4" placeholder="أدخل وصف التقرير"></textarea>
+            </div>
         </div>
 
         <div class="recipes-list">
-            <h3>التقارير الطبية</h3>
             <div class="recipe-card">
-                <h4>تقرير الفحص الطبي - أحمد علي</h4>
-                <p>تاريخ التقرير: 2024-08-01</p>
-                <p>محتوى التقرير: تم إجراء الفحص اللازم و...</p>
-                <button class="btn-delete">حذف</button>
+                <h4>عنوان التقرير الأول</h4>
+                <p>وصف موجز للتقرير الأول هنا...</p>
             </div>
             <div class="recipe-card">
-                <h4>تقرير الفحص الطبي - محمد سعيد</h4>
-                <p>تاريخ التقرير: 2024-08-15</p>
-                <p>محتوى التقرير: النتائج تشير إلى أن...</p>
-                <button class="btn-delete">حذف</button>
+                <h4>عنوان التقرير الثاني</h4>
+                <p>وصف موجز للتقرير الثاني هنا...</p>
             </div>
+            <!-- المزيد من البطاقات يمكن إضافتها هنا -->
         </div>
     </div>
 
-    <footer>
-        <h3>صحتك - لتطوير تطبيقات الرعاية الصحية</h3>
-        <p>&copy; 2024 صحتك. جميع الحقوق محفوظة.</p>
-        <div>
-            <a href="#" class="icon"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-    </footer>
-
     <script>
-        const mobileMenu = document.querySelector('#mobile-menu');
-        const navItems = document.querySelector('.nav-items');
-
-        mobileMenu.addEventListener('click', () => {
-            navItems.classList.toggle('active');
+        // Toggle mobile menu
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-items').classList.toggle('active');
         });
-
-        function toggleForm() {
-            const form = document.getElementById('report-form');
-            form.classList.toggle('hidden');
-        }
     </script>
 </body>
 </html>
+
