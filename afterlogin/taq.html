@@ -311,6 +311,45 @@
         document.getElementById('mobile-menu').addEventListener('click', function() {
             document.querySelector('.nav-items').classList.toggle('active');
         });
+         function toggleForm() {
+            const form = document.getElementById('report-form');
+            form.classList.toggle('hidden');
+        }
+
+        document.getElementById('report-form-content').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const patientName = document.getElementById('patientName').value;
+            const reportDate = document.getElementById('reportDate').value;
+            const diagnosis = document.getElementById('diagnosis').value;
+            const treatment = document.getElementById('treatment').value;
+
+            // إنشاء بطاقة التقرير
+            const reportCard = document.createElement('div');
+            reportCard.className = 'recipe-card';
+            reportCard.innerHTML = `
+                <button class="btn-delete" onclick="deleteReport(this)">×</button>
+                <h4>${patientName}</h4>
+                <p><strong>تاريخ التقرير:</strong> ${reportDate}</p>
+                <p><strong>التشخيص:</strong> ${diagnosis}</p>
+                <p><strong>الخطة العلاجية:</strong> ${treatment}</p>
+            `;
+
+            // أضف بطاقة التقرير إلى القائمة
+            document.getElementById('reports-list').appendChild(reportCard);
+
+            // إخفاء نموذج التقرير
+            document.getElementById('report-form').classList.add('hidden');
+
+            // مسح حقول النموذج
+            document.getElementById('report-form-content').reset();
+        });
+
+        function deleteReport(button) {
+            const reportCard = button.parentElement;
+            reportCard.remove();
+        }
+
     </script>
 </body>
 </html>
