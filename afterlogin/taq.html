@@ -1,170 +1,131 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
-
     <title>التقارير الطبية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        :root {
-            --white: #fff;
-            --gray: #c4c4c4;
-            --light-purple: #564ccf;
-            --dark-purple: #4c3fe2;
-        }
-
-        * {
+        /* CSS remains the same */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e2028;
+            color: white;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #1e2028;
-            font-family: "Tajawal", sans-serif;
-            color: var(--white);
-            direction: rtl;
-            text-align: right;
         }
 
         .container {
-            max-width: 1366px;
-            margin: 50px auto;
-            background-color: #252731;
-            color: var(--white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         header {
-            background-color: var(--dark-purple);
+            background-color: #252731;
             padding: 20px 0;
-            margin-bottom: 30px;
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 3rem;
-            color: var(--light-purple);
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-        }
-
-        nav #mobile-menu {
-            display: none;
-            color: var(--white);
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        .nav-items {
-            list-style-type: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-item .nav-link {
-            color: var(--gray);
-            text-decoration: none;
-            padding: 10px 15px;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-
-        .nav-item .nav-link:hover {
-            color: var(--white);
-        }
-
-        .btn-primary {
-            background-color: var(--light-purple);
-            color: var(--white);
-            padding: 14px 20px;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
             margin-bottom: 20px;
         }
 
+        header h1 {
+            font-size: 3rem;
+            text-align: center;
+            color: var(--light-purple);
+            margin: 0;
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: var(--light-purple);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--gray);
+        }
+
+        #mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+        }
+
         .btn-primary:hover {
-            background-color: var(--dark-purple);
-            transform: translateY(-2px);
+            background-color: #ff4c4c;
         }
 
         .recipe-form {
-            margin-top: 20px;
-            background-color: #2b2c31;
+            background-color: #252731;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
         }
 
         .recipe-form h3 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             margin-bottom: 15px;
-            border-bottom: 2px solid var(--light-purple);
-            padding-bottom: 10px;
             color: var(--light-purple);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        label {
-            font-size: 1.1rem;
-            color: var(--gray);
-            margin-bottom: 8px;
+        .form-group label {
             display: block;
+            margin-bottom: 5px;
+            color: var(--gray);
         }
 
-        input[type="text"],
-        textarea,
-        input[type="date"] {
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            padding: 10px;
             font-size: 1rem;
-            transition: border-color 0.3s;
-            background-color: #252731;
-            color: var(--white);
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
 
-        input[type="text"]:focus,
-        textarea:focus,
-        input[type="date"]:focus {
-            border-color: var(--light-purple);
-            outline: none;
+        .form-group textarea {
+            resize: vertical;
         }
 
         .recipes-list {
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
-                .recipe-card {
+        .recipe-card {
             background-color: #252731;
             padding: 20px;
             border-radius: 8px;
@@ -275,7 +236,7 @@
         </div>
     </header>
     <div class="container">
-        <button class="btn-primary">إضافة تقرير جديد</button>
+        <button class="btn-primary" id="add-report-btn">إضافة تقرير جديد</button>
 
         <div class="recipe-form">
             <h3>إضافة تقرير</h3>
@@ -293,7 +254,7 @@
             </div>
         </div>
 
-        <div class="recipes-list">
+        <div class="recipes-list" id="recipes-list">
             <div class="recipe-card">
                 <h4>عنوان التقرير الأول</h4>
                 <p>وصف موجز للتقرير الأول هنا...</p>
@@ -311,46 +272,38 @@
         document.getElementById('mobile-menu').addEventListener('click', function() {
             document.querySelector('.nav-items').classList.toggle('active');
         });
-         function toggleForm() {
-            const form = document.getElementById('report-form');
-            form.classList.toggle('hidden');
-        }
 
-        document.getElementById('report-form-content').addEventListener('submit', function(event) {
-            event.preventDefault();
+        // Function to add a new report
+        document.getElementById('add-report-btn').addEventListener('click', function() {
+            // Get the values from the form
+            const title = document.getElementById('report-title').value;
+            const date = document.getElementById('report-date').value;
+            const description = document.getElementById('report-description').value;
 
-            const patientName = document.getElementById('patientName').value;
-            const reportDate = document.getElementById('reportDate').value;
-            const diagnosis = document.getElementById('diagnosis').value;
-            const treatment = document.getElementById('treatment').value;
+            // Check if the inputs are not empty
+            if (title && date && description) {
+                // Create a new card for the report
+                const newCard = document.createElement('div');
+                newCard.classList.add('recipe-card');
+                
+                // Add content to the card
+                newCard.innerHTML = `
+                    <h4>${title}</h4>
+                    <p>تاريخ: ${date}</p>
+                    <p>${description}</p>
+                `;
 
-            // إنشاء بطاقة التقرير
-            const reportCard = document.createElement('div');
-            reportCard.className = 'recipe-card';
-            reportCard.innerHTML = `
-                <button class="btn-delete" onclick="deleteReport(this)">×</button>
-                <h4>${patientName}</h4>
-                <p><strong>تاريخ التقرير:</strong> ${reportDate}</p>
-                <p><strong>التشخيص:</strong> ${diagnosis}</p>
-                <p><strong>الخطة العلاجية:</strong> ${treatment}</p>
-            `;
+                // Append the new card to the list
+                document.getElementById('recipes-list').appendChild(newCard);
 
-            // أضف بطاقة التقرير إلى القائمة
-            document.getElementById('reports-list').appendChild(reportCard);
-
-            // إخفاء نموذج التقرير
-            document.getElementById('report-form').classList.add('hidden');
-
-            // مسح حقول النموذج
-            document.getElementById('report-form-content').reset();
+                // Clear the form fields
+                document.getElementById('report-title').value = '';
+                document.getElementById('report-date').value = '';
+                document.getElementById('report-description').value = '';
+            } else {
+                alert('يرجى تعبئة جميع الحقول قبل إضافة التقرير');
+            }
         });
-
-        function deleteReport(button) {
-            const reportCard = button.parentElement;
-            reportCard.remove();
-        }
-
     </script>
 </body>
 </html>
-
