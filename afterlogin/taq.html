@@ -11,148 +11,92 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
+
     <title>التقارير الطبية</title>
     <style>
         :root {
-            --background: #1e2028;
             --white: #fff;
             --gray: #c4c4c4;
             --light-purple: #564ccf;
             --dark-purple: #4c3fe2;
         }
 
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--background);
+        * {
             margin: 0;
             padding: 0;
-            direction: rtl;
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1e2028;
+            font-family: "Tajawal", sans-serif;
+            color: var(--white);
         }
 
         .container {
-            width: 90%;
-            max-width: 900px;
+            max-width: 1366px;
             margin: 50px auto;
-            background-color: #ffffff;
-            color: var(--dark-purple);
+            background-color: #252731;
+            color: var(--white);
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
         }
 
         header {
             background-color: var(--dark-purple);
-            color: white;
             padding: 20px 0;
             margin-bottom: 30px;
-            border-bottom: 4px solid black;
             position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2rem;
+            font-size: 3rem;
+            color: var(--light-purple);
         }
 
         nav {
-            position: relative;
+            display: flex;
+            align-items: center;
         }
 
-        /* Default display for large screens */
-        .nav-menu {
-            display: flex;
-            justify-content: center; /* Center the nav items */
-            gap: 20px; /* Add spacing between items */
+        nav #mobile-menu {
+            display: none;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
         }
-        .nav-menu a {
-            color: blue;
+
+        .nav-items {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-item .nav-link {
+            color: var(--gray);
             text-decoration: none;
             padding: 10px 15px;
             font-size: 1.1rem;
-            transition: background-color 0.3s, color 0.3s;
+            transition: color 0.3s;
         }
-        .nav-menu a:hover {
-            background-color: #333;
+
+        .nav-item .nav-link:hover {
             color: var(--white);
-        }
-        .nav-items {
-            display: none;
-        }
-
-        
-
-        /* Mobile view */
-/* Mobile view */
-@media (max-width: 768px) {
-    .nav-menu {
-        display: none;
-    }
-
-    #mobile-menu {
-        display: block;
-        font-size: 1.8rem;
-        cursor: pointer;
-        color: var(--white);
-    }
-
-    .nav-items {
-        position: absolute;
-        top: 60px; /* Adjust based on the height of the header */
-        right: 0;
-        background-color: var(--dark-purple);
-        width: 100%;
-        display: none;
-        flex-direction: column;
-        align-items: center; /* Center items horizontally */
-        padding: 10px 0;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-        z-index: 999; /* Ensure the menu is above other elements */
-    }
-
-    .nav-items.show {
-        display: flex;
-    }
-
-    .nav-items a {
-        color: white;
-        padding: 15px;
-        text-align: center;
-        font-size: 1.2rem;
-        text-decoration: none;
-        font-weight: bold;
-        width: 100%; /* Full width to make it easy to click */
-    }
-
-    .nav-items a:hover {
-        background-color: #333;
-    }
-}
-
-
-        .recipes-section {
-            margin-top: 20px;
-        }
-
-        .recipes-section h2 {
-            font-size: 2rem;
-            color: #00796b;
-            border-bottom: 2px solid #004d40;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
         }
 
         .btn-primary {
-            background-color: var(--dark-purple);
-            color: white;
+            background-color: var(--light-purple);
+            color: var(--white);
             padding: 14px 20px;
             font-size: 1.1rem;
             border: none;
@@ -163,28 +107,24 @@
         }
 
         .btn-primary:hover {
-            background-color: var(--light-purple);
+            background-color: var(--dark-purple);
             transform: translateY(-2px);
         }
 
         .recipe-form {
             margin-top: 20px;
-            background-color: #f5f5f5;
+            background-color: #2b2c31;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .hidden {
-            display: none;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
         }
 
         .recipe-form h3 {
             font-size: 1.6rem;
             margin-bottom: 15px;
-            color: black;
-            border-bottom: 2px solid black;
+            border-bottom: 2px solid var(--light-purple);
             padding-bottom: 10px;
+            color: var(--light-purple);
         }
 
         .form-group {
@@ -193,7 +133,7 @@
 
         label {
             font-size: 1.1rem;
-            color: #555;
+            color: var(--gray);
             margin-bottom: 8px;
             display: block;
         }
@@ -207,12 +147,14 @@
             border-radius: 6px;
             font-size: 1rem;
             transition: border-color 0.3s;
+            background-color: #252731;
+            color: var(--white);
         }
 
         input[type="text"]:focus,
         textarea:focus,
         input[type="date"]:focus {
-            border-color: #00796b;
+            border-color: var(--light-purple);
             outline: none;
         }
 
@@ -221,10 +163,10 @@
         }
 
         .recipe-card {
-            background-color: #ffffff;
+            background-color: #252731;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
             margin-bottom: 15px;
             position: relative;
         }
@@ -237,7 +179,7 @@
         .recipe-card h4 {
             font-size: 1.4rem;
             margin-top: 0;
-            color: black;
+            color: var(--light-purple);
         }
 
         .recipe-card p {
@@ -297,6 +239,35 @@
         footer .icon:hover {
             color: var(--dark-purple);
         }
+
+        @media screen and (max-width: 600px) {
+            nav #mobile-menu {
+                display: block;
+            }
+
+            nav .nav-items {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                align-items: center;
+                justify-content: center;
+                right: 0;
+                top: 12vh;
+                width: 100%;
+                height: 50%;
+                background-color: var(--dark-purple);
+            }
+
+            nav .nav-items.active {
+                display: flex;
+            }
+
+            nav .nav-items .nav-item {
+                padding: 2rem 0;
+                font-size: 1.4rem;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -305,18 +276,12 @@
             <h1>صحتك</h1>
             <span id="mobile-menu"><i class="fa-solid fa-bars"></i></span>
             <nav>
-                <ul class="nav-menu">
-                    <li><a href="#">لوحة التحكم</a></li>
-                    <li><a href="#">التقارير الطبية</a></li>
-                    <li><a href="#">الوصفات الطبية</a></li>
-                    <li><a href="#">الدعم الفني</a></li>
+                <ul class="nav-items">
+                    <li class="nav-item"><a href="#" class="nav-link">لوحة التحكم</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">التقارير الطبية</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">الوصفات الطبية</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">الدعم الفني</a></li>
                 </ul>
-                <div class="nav-items">
-                    <a href="#">لوحة التحكم</a>
-                    <a href="#">التقارير الطبية</a>
-                    <a href="#">الوصفات الطبية</a>
-                    <a href="#">الدعم الفني</a>
-                </div>
             </nav>
         </div>
     </header>
@@ -332,80 +297,60 @@
                     <input type="text" id="patientName" name="patientName" required>
                 </div>
                 <div class="form-group">
+                    <label for="reportTitle">عنوان التقرير</label>
+                    <input type="text" id="reportTitle" name="reportTitle" required>
+                </div>
+                <div class="form-group">
                     <label for="reportDate">تاريخ التقرير</label>
                     <input type="date" id="reportDate" name="reportDate" required>
                 </div>
                 <div class="form-group">
-                    <label for="diagnosis">التشخيص</label>
-                    <textarea id="diagnosis" name="diagnosis" rows="4" required></textarea>
+                    <label for="reportContent">محتوى التقرير</label>
+                    <textarea id="reportContent" name="reportContent" rows="4" required></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="treatment">الخطة العلاجية</label>
-                    <textarea id="treatment" name="treatment" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn-primary">حفظ التقرير</button>
+                <button class="btn-primary" type="submit">حفظ التقرير</button>
             </form>
         </div>
 
-        <div id="reports-list" class="recipes-list">
-            <!-- التقارير الطبية ستضاف هنا -->
+        <div class="recipes-list">
+            <h3>التقارير الطبية</h3>
+            <div class="recipe-card">
+                <h4>تقرير الفحص الطبي - أحمد علي</h4>
+                <p>تاريخ التقرير: 2024-08-01</p>
+                <p>محتوى التقرير: تم إجراء الفحص اللازم و...</p>
+                <button class="btn-delete">حذف</button>
+            </div>
+            <div class="recipe-card">
+                <h4>تقرير الفحص الطبي - محمد سعيد</h4>
+                <p>تاريخ التقرير: 2024-08-15</p>
+                <p>محتوى التقرير: النتائج تشير إلى أن...</p>
+                <button class="btn-delete">حذف</button>
+            </div>
         </div>
     </div>
 
-    <footer id="contact">
-        <h3>صحتك</h3>
-        <p>تواصل معنا الآن</p>
-        <div class="icons">
-          <a href="#"><i class="icon fa-brands fa-facebook"></i></a>
-          <a href="#"><i class="icon fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="icon fa-brands fa-twitter"></i></a>
-          <a href="#"><i class="icon fa-solid fa-phone"></i></a>
+    <footer>
+        <h3>صحتك - لتطوير تطبيقات الرعاية الصحية</h3>
+        <p>&copy; 2024 صحتك. جميع الحقوق محفوظة.</p>
+        <div>
+            <a href="#" class="icon"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
         </div>
     </footer>
 
     <script>
+        const mobileMenu = document.querySelector('#mobile-menu');
+        const navItems = document.querySelector('.nav-items');
+
+        mobileMenu.addEventListener('click', () => {
+            navItems.classList.toggle('active');
+        });
+
         function toggleForm() {
             const form = document.getElementById('report-form');
             form.classList.toggle('hidden');
         }
-
-        document.getElementById('report-form-content').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const patientName = document.getElementById('patientName').value;
-            const reportDate = document.getElementById('reportDate').value;
-            const diagnosis = document.getElementById('diagnosis').value;
-            const treatment = document.getElementById('treatment').value;
-
-            // إنشاء بطاقة التقرير
-            const reportCard = document.createElement('div');
-            reportCard.className = 'recipe-card';
-            reportCard.innerHTML = `
-                <button class="btn-delete" onclick="deleteReport(this)">×</button>
-                <h4>${patientName}</h4>
-                <p><strong>تاريخ التقرير:</strong> ${reportDate}</p>
-                <p><strong>التشخيص:</strong> ${diagnosis}</p>
-                <p><strong>الخطة العلاجية:</strong> ${treatment}</p>
-            `;
-
-            // أضف بطاقة التقرير إلى القائمة
-            document.getElementById('reports-list').appendChild(reportCard);
-
-            // إخفاء نموذج التقرير
-            document.getElementById('report-form').classList.add('hidden');
-
-            // مسح حقول النموذج
-            document.getElementById('report-form-content').reset();
-        });
-
-        function deleteReport(button) {
-            const reportCard = button.parentElement;
-            reportCard.remove();
-        }
-
-        document.getElementById('mobile-menu').addEventListener('click', () => {
-            document.querySelector('.nav-items').classList.toggle('show');
-        });
     </script>
 </body>
 </html>
